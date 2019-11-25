@@ -1,0 +1,52 @@
+tree("Root")
+	tree("Idle")
+
+tree("Tester")
+	sequence
+		yes()
+		Wait 1.0
+		no()
+		Wait 1.0
+
+tree("Idle")
+	sequence
+		while
+			TestIsTired()
+			tree("Tired")
+		while 
+			TestIsHungry()
+			tree("Hungry")
+		while 
+			TestIsLonely()
+			tree("Lonely")
+		while 
+			TestIsPlayful()
+			tree("Playful")
+		while 
+			TestIsNeedGoOut()
+			tree("GoOut")
+		while
+			TestIsAlerted()
+			tree("Alerted")
+	
+
+tree("Tired")
+	fallback
+		Sleepy()
+		Irritable()
+		Sleep()
+
+tree("Hungry")
+	Succeed
+
+tree("Lonely")
+	Succeed
+
+tree("Playful")
+	Succeed
+
+tree("GoOut")
+	Succeed
+
+tree("Alerted")
+	Succeed
