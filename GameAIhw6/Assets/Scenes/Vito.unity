@@ -156,7 +156,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -213,11 +213,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1014814816}
   - component: {fileID: 1014814815}
-  - component: {fileID: 1014814817}
   - component: {fileID: 1014814818}
   - component: {fileID: 1014814819}
+  - component: {fileID: 1014814820}
+  - component: {fileID: 1014814817}
+  - component: {fileID: 1014814821}
   m_Layer: 0
-  m_Name: TestEmpty
+  m_Name: Vito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,9 +270,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1014814814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9289a0e5faf6f454ba5b1c3850cef263, type: 3}
+  m_Script: {fileID: 11500000, guid: be7f8003311704242ad2259a7c08b539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPetting: 0
+  littleCut: 25
+  normalCut: 50
+  aggressiveCut: 75
 --- !u!114 &1014814818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,9 +289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ef030ecb0329b4183c1bb35ec70cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTired: 1
+  isTired: 0
   isHungry: 0
-  isLonely: 0
+  isLonely: 1
   isPlayful: 0
   isNeedGoOut: 0
   isAlerted: 0
@@ -301,3 +307,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8beb6b9cb09cc47b68da7e9107e6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bedExists: 0
+  sleepyCut: 25
+  irritableCut: 50
+  sleepCut: 75
+--- !u!114 &1014814820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014814814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dac1312ed6e8a4db8a2f4b7291cb94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowlFullness: 100
+  hungryCut: 30
+--- !u!114 &1014814821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014814814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0e9294d3823f34ab36db4c1621d513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGoOut: 0
+  littleCut: 60
+  normalCut: 80
+  aggressiveCut: 90

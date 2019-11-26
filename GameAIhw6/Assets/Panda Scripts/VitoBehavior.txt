@@ -1,52 +1,123 @@
 tree("Root")
 	tree("Idle")
 
-tree("Tester")
-	sequence
-		yes()
-		Wait 1.0
-		no()
-		Wait 1.0
-
 tree("Idle")
 	sequence
-		while
-			TestIsTired()
-			tree("Tired")
-		while 
-			TestIsHungry()
-			tree("Hungry")
-		while 
-			TestIsLonely()
-			tree("Lonely")
-		while 
-			TestIsPlayful()
-			tree("Playful")
-		while 
-			TestIsNeedGoOut()
-			tree("GoOut")
-		while
-			TestIsAlerted()
-			tree("Alerted")
+		Wait 3.0
+		fallback
+			while
+				TestIsTired()
+				tree("Tired")
+			while 
+				TestIsHungry()
+				tree("Hungry")
+			while 
+				TestIsLonely()
+				tree("Lonely")
+			while 
+				TestIsPlayful()
+				tree("Playful")
+			while 
+				TestIsNeedGoOut()
+				tree("GoOut")
+			while
+				TestIsAlerted()
+				tree("Alerted")
 	
 
 tree("Tired")
-	fallback
-		Sleepy()
-		Irritable()
-		Sleep()
+	sequence
+		fallback
+			isSleeping()
+			fallback
+				Sleepy()
+				Irritable()
+				Sleep()
+		while
+			sequence
+				not
+					isSleeping()
+				CanSleep()
+			sequence
+				Wait 3.0
+				tree("GoToSleep")
+
+tree("GoToSleep")
+	sequence
+		fallback
+			FindBed()
+			FindSpot()
+		Wait 3.0
+		FallAsleep()
+		Succeed
 
 tree("Hungry")
-	Succeed
+	fallback
+		while
+			TestIsHungry()
+			sequence
+				GoToBowl()
+				fallback
+					sequence
+						CheckForFood()
+						Wait 5.0
+						EatFood()
+						Wait 3.0
+						while
+							CheckStillHungry()
+							sequence
+								BegForFood()
+								Wait 3.0
+					while
+						CheckStillHungry()
+						sequence
+							BegForFood()
+							Wait 3.0
+					while
+						not
+							CheckForFood()
+						sequence
+							BegForFood()
+							Wait 3.0
+		Succeed
 
 tree("Lonely")
-	Succeed
+	fallback
+		while
+			not
+				IsPetting()
+			fallback
+				LittleLonely()
+				Lonely()
+				AggressivelyLonely()
+				Succeed
+		CheckWantPet()
+		StopPet()
+		Succeed
 
 tree("Playful")
 	Succeed
 
 tree("GoOut")
-	Succeed
+	fallback
+		sequence
+			NeedGoOut()
+			GoToDoor()
+			fallback
+				while
+					not
+						IsGoingOut()
+					fallback
+						LittleGoOut()
+						GoOut()
+						AggressivelyGoOut()
+						sequence
+							GoOnFloor()
+							Succeed
+				CheckNeedGoOut()
+				StopGoOut()
+				Succeed
+		Succeed
 
 tree("Alerted")
 	Succeed
