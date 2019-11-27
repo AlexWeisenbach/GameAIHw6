@@ -69,4 +69,15 @@ public class VitoHungry : MonoBehaviour {
         Task.current.Complete(Blackboard.GetHungry() > 0 && Blackboard.GetHungry() > hungryCut);
     }
 
+    [Task]
+    public void StopEating() {
+        Debug.Log("Vito stops eating his food.");
+        Task.current.Succeed();
+    }
+
+    [Task]
+    public void IsEating() {
+        Task.current.Complete(Blackboard.eating);
+    }
+
 }

@@ -9,6 +9,7 @@ public class Blackboard : MonoBehaviour {
     public static bool irritated = false;
 
     static float hungry = 0;
+    public static bool eating = false;
 
     static float lonely = 78;
     static float playful = 0;

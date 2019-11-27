@@ -761,6 +761,7 @@ GameObject:
   - component: {fileID: 1014814820}
   - component: {fileID: 1014814817}
   - component: {fileID: 1014814821}
+  - component: {fileID: 1014814822}
   m_Layer: 0
   m_Name: Vito
   m_TagString: Untagged
@@ -834,10 +835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTired: 0
   isHungry: 0
-  isLonely: 1
+  isLonely: 0
   isPlayful: 0
   isNeedGoOut: 0
-  isAlerted: 0
+  isAlerted: 1
 --- !u!114 &1014814819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +885,18 @@ MonoBehaviour:
   littleCut: 60
   normalCut: 80
   aggressiveCut: 90
+--- !u!114 &1014814822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014814814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cb9fdb8049d7444aabd83c480e2409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019352159
 GameObject:
   m_ObjectHideFlags: 0

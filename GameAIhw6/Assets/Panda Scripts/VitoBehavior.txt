@@ -28,7 +28,7 @@ tree("Idle")
 tree("Tired")
 	sequence
 		fallback
-			isSleeping()
+			IsSleeping()
 			fallback
 				Sleepy()
 				Irritable()
@@ -36,7 +36,7 @@ tree("Tired")
 		while
 			sequence
 				not
-					isSleeping()
+					IsSleeping()
 				CanSleep()
 			sequence
 				Wait 3.0
@@ -60,7 +60,7 @@ tree("Hungry")
 				fallback
 					sequence
 						CheckForFood()
-						Wait 5.0
+						Wait 3.0
 						EatFood()
 						Wait 3.0
 						while
@@ -96,7 +96,12 @@ tree("Lonely")
 		Succeed
 
 tree("Playful")
-	Succeed
+	while
+		WantToPlay()
+		sequence
+			GetReadyToPlay()
+			tree("PlayFetch")
+
 
 tree("GoOut")
 	fallback
@@ -120,4 +125,22 @@ tree("GoOut")
 		Succeed
 
 tree("Alerted")
-	Succeed
+	sequence
+		mute
+			while
+				IsSleeping()
+				sequence
+					WakeUp()
+					Wait 3.0
+		mute
+			while
+				IsEating()
+				sequence
+					StopEating()
+					Wait 3.0
+		fallback
+			Alert1()
+			Alert2()
+			Alert3()
+			Alert4()
+			DefaultAlert()

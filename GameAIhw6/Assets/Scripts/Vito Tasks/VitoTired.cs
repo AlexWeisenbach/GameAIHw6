@@ -28,6 +28,12 @@ public class VitoTired : MonoBehaviour {
     }
 
     [Task]
+    public void WakeUp() {
+        Debug.Log("Vito lifts his head before getting up off of the " + spot);
+        Task.current.Succeed();
+    }
+
+    [Task]
     public void Sleepy() {
         if (Blackboard.GetTired() < sleepyCut || Blackboard.GetTired() >= irritableCut) {
             Task.current.Fail();
@@ -106,7 +112,7 @@ public class VitoTired : MonoBehaviour {
     }
 
     [Task]
-    public void isSleeping() {
+    public void IsSleeping() {
         Task.current.Complete(Blackboard.asleep);
     }
 
