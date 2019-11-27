@@ -10,7 +10,7 @@ public class Blackboard : MonoBehaviour {
 
     static float hungry = 0;
 
-    static float lonely = 0;
+    static float lonely = 78;
     static float playful = 0;
     static float goOut = 0;
     static float alerted = 0;
