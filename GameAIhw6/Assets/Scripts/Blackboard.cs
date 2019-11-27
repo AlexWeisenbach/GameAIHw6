@@ -15,6 +15,8 @@ public class Blackboard : MonoBehaviour {
     static float goOut = 0;
     static float alerted = 0;
 
+    static bool bowlFull = false;
+
     public static bool Irritable() {
         return irritated;
     }
@@ -91,6 +93,16 @@ public class Blackboard : MonoBehaviour {
 
     public static void DeltaAlerted(float f) {
         alerted += f;
+    }
+
+    public static void FillBowl()
+    {
+        bowlFull = true;
+    }
+
+    public static void EmptyBowl()
+    {
+        bowlFull = false;
     }
 
 }
