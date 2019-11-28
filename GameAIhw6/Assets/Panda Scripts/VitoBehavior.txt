@@ -96,21 +96,26 @@ tree("Lonely")
 		Succeed
 
 tree("Playful")
-	fallback
-		while
-			WantToPlay()
-			fallback
-				while
-					Playing()
-					sequence
-						WaitForThrow()
-						Wait 3.0
-						tree("PlayFetch")
-				sequence
-					GetReadyToPlay()
-					Wait 3.0
+	sequence
+		fallback
+			Playing()
+			sequence
+				GetReadyToPlay()
+				Wait 3.0
+				fallback
 					tree("PlayFetch")
-		StopFetch()
+					WaitForThrow()
+
+		sequence
+			Wait 3.0
+			while
+				HasPatience()
+				while
+					WaitForThrow()
+					tree("PlayFetch")
+		fallback
+			WantContinuePlay()
+			StopFetch()
 
 tree("PlayFetch")
 	while

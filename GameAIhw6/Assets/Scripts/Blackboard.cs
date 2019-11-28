@@ -20,8 +20,18 @@ public class Blackboard : MonoBehaviour {
     static bool bowlFull = false;
     public static bool fillFlag = false;
 
-    [SerializeField]
     public static int SecondsPerDay = 1440;
+
+
+    /* ABANDONED
+    public static bool tFlag = false;
+    public static bool hFlag = false;
+    public static bool gFlag = false;
+    public static bool lFlag = false; */
+
+    private void Update() {
+        
+    }
 
     public static bool Irritable() {
         return irritated;

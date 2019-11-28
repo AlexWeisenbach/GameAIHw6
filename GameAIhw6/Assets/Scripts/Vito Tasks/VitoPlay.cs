@@ -7,8 +7,14 @@ public class VitoPlay : MonoBehaviour {
 
     [SerializeField]
     int playCut = 75;
-
+    [SerializeField]
     int patience = 3;
+
+    int currPatience = 0;
+
+    private void Start() {
+        currPatience = patience;
+    }
 
     [Task]
     public void CheckIfThrown() {
@@ -26,25 +32,40 @@ public class VitoPlay : MonoBehaviour {
     }
 
     [Task]
+    public void WantContinuePlay() {
+        Task.current.Complete(!(Blackboard.GetLonely() >= 0) && currPatience >= 0);
+    }
+
+    [Task]
+    public void HasPatience() {
+        Task.current.Complete(currPatience >= 0);
+    }
+
+    [Task]
     public void WaitForThrow() {
         int rand = Mathf.FloorToInt(Random.Range(0, 3));
 
-        switch (rand) {
-            case 0:
-                Debug.Log("Vito wags his tail expectantly.");
-                break;
-            case 1:
-                Debug.Log("Vito looks up at you and waits for the throw.");
-                break;
-            case 2:
-                Debug.Log("Vito runs in circles as he waits for you to throw the stick.");
-                break;
-            default:
-                Debug.Log("Vito sits patiently at your feet.");
-                break;
+        if (!Blackboard.thrown) {
+            switch (rand) {
+                case 0:
+                    Debug.Log("Vito wags his tail expectantly.");
+                    break;
+                case 1:
+                    Debug.Log("Vito looks up at you and waits for the throw.");
+                    break;
+                case 2:
+                    Debug.Log("Vito runs in circles as he waits for you to throw the stick.");
+                    break;
+                default:
+                    Debug.Log("Vito sits patiently at your feet.");
+                    break;
+            }
+            currPatience -= 1;
+        } else {
+            currPatience = patience;
         }
 
-        Task.current.Succeed();
+        Task.current.Complete(Blackboard.thrown);
     }
 
     [Task]
@@ -64,6 +85,7 @@ public class VitoPlay : MonoBehaviour {
         }
 
         Blackboard.playing = true;
+        currPatience = patience;
         Task.current.Succeed();
     }
 
@@ -85,6 +107,15 @@ public class VitoPlay : MonoBehaviour {
                 Debug.Log("Vito sits patiently at your feet before realizing that you don't have the stick and races to get it.");
                 break;
         }
+
+        rand = Mathf.FloorToInt(Random.Range(10, 25));
+        Blackboard.DeltaLonely(-rand);
+
+        if (Blackboard.GetLonely() < 0) {
+            Blackboard.SetLonely(0);
+        }
+
+        Blackboard.thrown = false;
 
         Task.current.Succeed();
     }
@@ -113,6 +144,12 @@ public class VitoPlay : MonoBehaviour {
 
     [Task]
     public void StopFetch() {
+
+        if (!Blackboard.playing) {
+            Task.current.Succeed();
+            return;
+        }
+
         int rand = Mathf.FloorToInt(Random.Range(0, 3));
 
         switch (rand) {
@@ -130,6 +167,7 @@ public class VitoPlay : MonoBehaviour {
                 break;
         }
 
+        Blackboard.playing = false;
         Task.current.Succeed();
     }
 

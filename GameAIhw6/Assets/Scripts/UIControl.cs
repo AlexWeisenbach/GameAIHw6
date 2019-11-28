@@ -33,13 +33,16 @@ public class UIControl : MonoBehaviour
         }
         else if (Input.GetKeyDown("k"))
         {
-            //Figure out how fetch should change blackboard values
+            Blackboard.thrown = true;
             Log("You throw a stick for Vito.");
             
         }
         else if (Input.GetKeyDown("p"))
         {
-            //blackboard values
+            Blackboard.DeltaLonely(-10);
+            if (Blackboard.GetLonely() > 0) {
+                Blackboard.SetLonely(0);
+            }
             Log("You pet Vito.");
             
         }
