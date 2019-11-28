@@ -16,7 +16,12 @@ tree("Idle")
 				tree("Lonely")
 			while 
 				TestIsPlayful()
-				tree("Playful")
+				fallback
+					tree("Playful")
+					while
+						not
+							HasPatience()
+						StopFetch()
 			while 
 				TestIsNeedGoOut()
 				tree("GoOut")
@@ -124,6 +129,7 @@ tree("PlayFetch")
 			GetStick()
 			Wait 3.0
 			BringStickBack()
+			Wait 3.0
 
 
 tree("GoOut")

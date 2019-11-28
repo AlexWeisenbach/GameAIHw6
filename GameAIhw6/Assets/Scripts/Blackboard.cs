@@ -14,6 +14,7 @@ public class Blackboard : MonoBehaviour {
     static float lonely = 100;
     public static bool thrown = false;
     public static bool playing = false;
+    public static bool wantsToPlay = false;
 
     static float goOut = 0;
 
@@ -28,10 +29,6 @@ public class Blackboard : MonoBehaviour {
     public static bool hFlag = false;
     public static bool gFlag = false;
     public static bool lFlag = false; */
-
-    private void Update() {
-        
-    }
 
     public static bool Irritable() {
         return irritated;

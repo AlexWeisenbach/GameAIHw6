@@ -56,12 +56,7 @@ public class VitoTests : MonoBehaviour {
 
     [Task]
     public void TestIsPlayful() {
-        if (isPlayful) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(Blackboard.wantsToPlay);
     }
 
     [Task]

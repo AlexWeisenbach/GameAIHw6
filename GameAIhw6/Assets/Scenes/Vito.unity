@@ -838,7 +838,7 @@ MonoBehaviour:
   isTired: 0
   isHungry: 0
   isLonely: 0
-  isPlayful: 0
+  isPlayful: 1
   isNeedGoOut: 0
   isAlerted: 0
 --- !u!114 &1014814819
@@ -912,6 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playCut: 75
+  patience: 3
 --- !u!114 &1014814824
 MonoBehaviour:
   m_ObjectHideFlags: 0

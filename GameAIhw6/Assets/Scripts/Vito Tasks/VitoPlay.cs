@@ -16,6 +16,12 @@ public class VitoPlay : MonoBehaviour {
         currPatience = patience;
     }
 
+    private void Update() {
+        if (Blackboard.GetLonely() >= playCut) {
+            Blackboard.wantsToPlay = true;
+        }
+    }
+
     [Task]
     public void CheckIfThrown() {
         Task.current.Complete(Blackboard.thrown);
