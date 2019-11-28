@@ -11,12 +11,17 @@ public class Blackboard : MonoBehaviour {
     static float hungry = 0;
     public static bool eating = false;
 
-    static float lonely = 78;
-    static float playful = 0;
+    static float lonely = 100;
+    public static bool thrown = false;
+    public static bool playing = false;
+
     static float goOut = 0;
-    static float alerted = 0;
 
     static bool bowlFull = false;
+    public static bool fillFlag = false;
+
+    [SerializeField]
+    public static int SecondsPerDay = 1440;
 
     public static bool Irritable() {
         return irritated;
@@ -60,18 +65,6 @@ public class Blackboard : MonoBehaviour {
         lonely += f;
     }
 
-    public static float GetPlayful() {
-        return playful;
-    }
-
-    public static void SetPlayful(float f) {
-        playful = f;
-    }
-
-    public static void DeltaPlayful(float f) {
-        playful += f;
-    }
-
     public static float GetGoOut() {
         return goOut;
     }
@@ -84,18 +77,6 @@ public class Blackboard : MonoBehaviour {
         goOut += f;
     }
 
-    public static float GetAlerted() {
-        return alerted;
-    }
-
-    public static void SetAlerted(float f) {
-        alerted = f;
-    }
-
-    public static void DeltaAlerted(float f) {
-        alerted += f;
-    }
-
     public static void FillBowl()
     {
         bowlFull = true;
@@ -105,5 +86,6 @@ public class Blackboard : MonoBehaviour {
     {
         bowlFull = false;
     }
+
 
 }

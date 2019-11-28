@@ -9,6 +9,15 @@ public class VitoHungry : MonoBehaviour {
     [SerializeField]
     int hungryCut = 30;
 
+    private void Update() {
+        if (Blackboard.fillFlag) {
+            Blackboard.fillFlag = false;
+            bowlFullness = 100;
+        } else if (bowlFullness == 0) {
+            Blackboard.EmptyBowl();
+        }
+    }
+
     [Task]
     public void GoToBowl() {
         Debug.Log("Vito walks over to his bowl.");

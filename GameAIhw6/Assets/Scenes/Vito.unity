@@ -762,6 +762,8 @@ GameObject:
   - component: {fileID: 1014814817}
   - component: {fileID: 1014814821}
   - component: {fileID: 1014814822}
+  - component: {fileID: 1014814823}
+  - component: {fileID: 1014814824}
   m_Layer: 0
   m_Name: Vito
   m_TagString: Untagged
@@ -838,7 +840,7 @@ MonoBehaviour:
   isLonely: 0
   isPlayful: 0
   isNeedGoOut: 0
-  isAlerted: 1
+  isAlerted: 0
 --- !u!114 &1014814819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,6 +897,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72cb9fdb8049d7444aabd83c480e2409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1014814823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014814814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c209cda7fb2d34383cf81202fa7c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playCut: 75
+--- !u!114 &1014814824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014814814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2299fd27e5692d48a87b609bef05a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1019352159

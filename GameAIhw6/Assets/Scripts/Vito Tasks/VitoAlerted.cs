@@ -7,11 +7,15 @@ public class VitoAlerted : MonoBehaviour {
 
     // 1440 seconds in a day
 
-    int TOTALTIME = 1440;
+    int TOTALTIME = Blackboard.SecondsPerDay;
     int alertStates = 4;
 
     // TEMPORARY
     int time = 0;
+
+    private void Update() {
+        time = Clock.getTime();
+    }
 
     [Task]
     public void Alert1() {
