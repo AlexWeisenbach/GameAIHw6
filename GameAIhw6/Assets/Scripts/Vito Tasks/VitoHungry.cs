@@ -9,6 +9,8 @@ public class VitoHungry : MonoBehaviour {
     [SerializeField]
     int hungryCut = 30;
 
+    private UIControl controller;
+
     private void Update() {
         if (Blackboard.fillFlag) {
             Blackboard.fillFlag = false;
@@ -18,9 +20,14 @@ public class VitoHungry : MonoBehaviour {
         }
     }
 
+    private void Start()
+    {
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
+    }
+
     [Task]
     public void GoToBowl() {
-        Debug.Log("Vito walks over to his bowl.");
+        controller.Log("Vito walks over to his bowl.");
         Task.current.Succeed();
     }
 
@@ -32,7 +39,7 @@ public class VitoHungry : MonoBehaviour {
     [Task]
     public void EatFood() {
 
-        Debug.Log("Vito is eating his food.");
+        controller.Log("Vito is eating his food.");
 
         if (Blackboard.GetHungry() > bowlFullness) {
             Blackboard.DeltaHungry(-bowlFullness);
@@ -57,16 +64,16 @@ public class VitoHungry : MonoBehaviour {
 
         switch(rand) {
             case 0:
-                Debug.Log("Vito's empty food bowl bangs around in the next room.");
+                controller.Log("Vito's empty food bowl bangs around in the next room.");
                 break;
             case 1:
-                Debug.Log("A faint whimpering carries from Vito's feeding area.");
+                controller.Log("A faint whimpering carries from Vito's feeding area.");
                 break;
             case 2:
-                Debug.Log("A low growl eminates from a hungry Vito");
+                controller.Log("A low growl eminates from a hungry Vito");
                 break;
             default:
-                Debug.Log("Vito drops his empty food dish at your feet.");
+                controller.Log("Vito drops his empty food dish at your feet.");
                 break;
         }
 
@@ -80,7 +87,7 @@ public class VitoHungry : MonoBehaviour {
 
     [Task]
     public void StopEating() {
-        Debug.Log("Vito stops eating his food.");
+        controller.Log("Vito stops eating his food.");
         Task.current.Succeed();
     }
 

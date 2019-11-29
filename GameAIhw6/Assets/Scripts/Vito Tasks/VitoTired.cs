@@ -15,6 +15,13 @@ public class VitoTired : MonoBehaviour {
     [SerializeField]
     int sleepCut = 75;
 
+    private UIControl controller;
+
+    private void Start()
+    {
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
+    }
+
     string spot = "bed";
 
     enum State {
@@ -29,7 +36,7 @@ public class VitoTired : MonoBehaviour {
 
     [Task]
     public void WakeUp() {
-        Debug.Log("Vito lifts his head before getting up off of the " + spot);
+        controller.Log("Vito lifts his head before getting up off of the " + spot);
         Task.current.Succeed();
     }
 
@@ -40,7 +47,7 @@ public class VitoTired : MonoBehaviour {
             return;
         }
         Blackboard.irritated = false;
-        Debug.Log("Vito looks sleepy");
+        controller.Log("Vito looks sleepy");
         Task.current.Succeed();
     }
 
@@ -51,7 +58,7 @@ public class VitoTired : MonoBehaviour {
             return;
         }
         Blackboard.irritated = true;
-        Debug.Log("Vito seems drowsy, and easily provoked.");
+        controller.Log("Vito seems drowsy, and easily provoked.");
         Task.current.Succeed();
     }
 
@@ -62,18 +69,18 @@ public class VitoTired : MonoBehaviour {
             return;
         }
         Blackboard.irritated = false;
-        Debug.Log("Vito needs to sleep");
+        controller.Log("Vito needs to sleep");
         Task.current.Succeed();
     }
 
     [Task]
     public void FindBed() {
-        Debug.Log("Vito looks around for his bed");
+        controller.Log("Vito looks around for his bed");
         if (bedExists) {
-            Debug.Log("Vito falls asleep in his bed!");
+            controller.Log("Vito falls asleep in his bed!");
             Task.current.Succeed();
         } else {
-            Debug.Log("Doesn't look like Vito has a bed...");
+            controller.Log("Doesn't look like Vito has a bed...");
             Task.current.Fail();
         }
     }
@@ -88,23 +95,23 @@ public class VitoTired : MonoBehaviour {
 
        switch (rand) {
             case 0:
-                Debug.Log("Vito curls up on the couch, leaving scratches when he does.");
+                controller.Log("Vito curls up on the couch, leaving scratches when he does.");
                 spot = "couch";
                 break;
             case 1:
-                Debug.Log("Vito falls asleep on the bed, making sure to roll around on the ground first.");
+                controller.Log("Vito falls asleep on the bed, making sure to roll around on the ground first.");
                 spot = "bed";
                 break;
             case 2:
-                Debug.Log("Vito scratches at the rug before falling asleep on it.");
+                controller.Log("Vito scratches at the rug before falling asleep on it.");
                 spot = "rug";
                 break;
             case 3:
-                Debug.Log("Vito found a comfortable spot by the fireplace, and drifts off to sleep.");
+                controller.Log("Vito found a comfortable spot by the fireplace, and drifts off to sleep.");
                 spot = "floor";
                 break;
             default:
-                Debug.Log("Vito passes out where he stands.");
+                controller.Log("Vito passes out where he stands.");
                 spot = "floor";
                 break;
        }
@@ -119,7 +126,7 @@ public class VitoTired : MonoBehaviour {
     [Task]
     public void FallAsleep() {
         Blackboard.asleep = true;
-        Debug.Log("Vito is sleeping soundly on the " + spot);
+        controller.Log("Vito is sleeping soundly on the " + spot);
         Task.current.Succeed();
     }
 

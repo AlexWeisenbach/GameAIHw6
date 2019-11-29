@@ -14,7 +14,14 @@ public class VitoLonely : MonoBehaviour {
     int normalCut = 50;
     [SerializeField]
     int aggressiveCut = 75;
-    
+
+    private UIControl controller;
+
+    private void Start()
+    {
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
+    }
+
     [Task]
     public void LittleLonely() {
 
@@ -27,16 +34,16 @@ public class VitoLonely : MonoBehaviour {
 
         switch(rand) {
             case 0:
-                Debug.Log("Vito is looking at you expectantly.");
+                controller.Log("Vito is looking at you expectantly.");
                 break;
             case 1:
-                Debug.Log("Vito lets out a low whine.");
+                controller.Log("Vito lets out a low whine.");
                 break;
             case 2:
-                Debug.Log("Vito brushes against your legs.");
+                controller.Log("Vito brushes against your legs.");
                 break;
             default:
-                Debug.Log("Vito stares at you with sentient eyes. He speaks with a voice that seems not of this earth, 'The statistical probability of this happening is 0, did you know that?' As you lower your self to your knees to worship this clearly divine being, he barks a single command. Pet me plz :P");
+                controller.Log("Vito stares at you with sentient eyes. He speaks with a voice that seems not of this earth, 'The statistical probability of this happening is 0, did you know that?' As you lower your self to your knees to worship this clearly divine being, he barks a single command. Pet me plz :P");
                 break;
         }
 
@@ -55,16 +62,16 @@ public class VitoLonely : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito watches you approach and starts wagging his tail.");
+                controller.Log("Vito watches you approach and starts wagging his tail.");
                 break;
             case 1:
-                Debug.Log("Vito whines as he paws at you.");
+                controller.Log("Vito whines as he paws at you.");
                 break;
             case 2:
-                Debug.Log("Vito jumps up on you.");
+                controller.Log("Vito jumps up on you.");
                 break;
             default:
-                Debug.Log("Vito gets excited when he sees you.");
+                controller.Log("Vito gets excited when he sees you.");
                 break;
         }
 
@@ -83,16 +90,16 @@ public class VitoLonely : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito gives you the cutest puppy dog eyes you've ever seen, and hes in his 30's!");
+                controller.Log("Vito gives you the cutest puppy dog eyes you've ever seen, and hes in his 30's!");
                 break;
             case 1:
-                Debug.Log("Vito absolutely won't leave you alone.");
+                controller.Log("Vito absolutely won't leave you alone.");
                 break;
             case 2:
-                Debug.Log("Vito lays right on top of your chest.");
+                controller.Log("Vito lays right on top of your chest.");
                 break;
             default:
-                Debug.Log("Vito is ecstatic to be in your presence.");
+                controller.Log("Vito is ecstatic to be in your presence.");
                 break;
         }
 
@@ -108,16 +115,16 @@ public class VitoLonely : MonoBehaviour {
 
             switch (rand) {
                 case 0:
-                    Debug.Log("Vito is loving his pets.");
+                    controller.Log("Vito is loving his pets.");
                     break;
                 case 1:
-                    Debug.Log("Vito can't get enough of you.");
+                    controller.Log("Vito can't get enough of you.");
                     break;
                 case 2:
-                    Debug.Log("Vito's tail is wagging.");
+                    controller.Log("Vito's tail is wagging.");
                     break;
                 default:
-                    Debug.Log("Vito's never been happier.");
+                    controller.Log("Vito's never been happier.");
                     break;
             }
 
@@ -137,13 +144,13 @@ public class VitoLonely : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito walks away.");
+                controller.Log("Vito walks away.");
                 break;
             case 1:
-                Debug.Log("Vito runs into another room.");
+                controller.Log("Vito runs into another room.");
                 break;
             default:
-                Debug.Log("Satisfied, Vito lays down next to you.");
+                controller.Log("Satisfied, Vito lays down next to you.");
                 break;
         }
 

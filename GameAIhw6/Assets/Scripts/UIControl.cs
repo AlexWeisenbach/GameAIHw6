@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UIControl : MonoBehaviour
 {
     public Text textbox;
+    public Text clock;
+    public Text readout;
     public ScrollRect scroll;
     private string displayedText = "";
+    private bool readoutVisible = false;
     //public Blackboard blackboard;
     // Start is called before the first frame update
     void Start()
@@ -74,12 +78,14 @@ public class UIControl : MonoBehaviour
         else if (Input.GetKeyDown("i"))
         {
             Log("15 minutes passes");
+            Clock.AdvanceTime(15);
             timeChange = true;
             
         }
         else if (Input.GetKeyDown("h"))
         {
             Log("An hour passes.");
+            Clock.AdvanceTime(60);
             timeChange = true;
             
         }
@@ -93,6 +99,25 @@ public class UIControl : MonoBehaviour
         {
             Log("Vito hears a mysterious noise!");
             
+        }
+        else if(Input.GetKeyDown("1"))
+        {
+            readoutVisible = !readoutVisible;
+        }
+
+        float hours = Clock.getTime() / 60;
+        float minutes = Clock.getTime() % 60;
+        clock.text = hours.ToString("00") + ":" + minutes.ToString("00");
+
+        
+        if(readoutVisible)
+        {
+            readout.gameObject.GetComponentInParent<CanvasRenderer>().gameObject.transform.localScale = new Vector3(1, 1, 1);
+            readout.text = "Lonely: " + Blackboard.GetLonely() + "\nHungry: " + Blackboard.GetHungry() + "\nTired: " + Blackboard.GetTired() + "\nGo out:" + Blackboard.GetGoOut();
+        }
+        else
+        {
+            readout.gameObject.GetComponentInParent<CanvasRenderer>().gameObject.transform.localScale = new Vector3(0, 0, 0);
         }
         
     }
