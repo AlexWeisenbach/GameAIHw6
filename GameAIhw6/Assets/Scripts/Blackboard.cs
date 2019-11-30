@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour {
 
-    static float tired = 0;
+    static float tired = 55;
     public static bool asleep = false;
     public static bool irritated = false;
 
     static float hungry = 0;
     public static bool eating = false;
 
-    static float lonely = 100;
+    static float lonely = 0;
     public static bool thrown = false;
     public static bool playing = false;
     public static bool wantsToPlay = false;
