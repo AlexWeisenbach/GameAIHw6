@@ -24,59 +24,46 @@ public class VitoTests : MonoBehaviour {
     [SerializeField]
     bool isAlerted = false;
 
+    public State state = State.IDLE;
+
+    public enum State {
+        IDLE,
+        TIRED,
+        HUNGRY,
+        LONELY,
+        PLAYFUL,
+        ALERTED,
+        GOOUT
+    }
+
     [Task]
     public void TestIsTired() {
-        if (isTired) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(state == State.TIRED);
     }
 
     [Task]
     public void TestIsHungry() {
-        if (isHungry) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(state == State.HUNGRY);
     }
 
     [Task]
     public void TestIsLonely() {
-        if (isLonely) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(state == State.LONELY);
     }
 
     [Task]
     public void TestIsPlayful() {
-        Task.current.Complete(Blackboard.wantsToPlay);
+        Task.current.Complete(state == State.PLAYFUL);
     }
 
     [Task]
     public void TestIsNeedGoOut() {
-        if (isNeedGoOut) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(state == State.GOOUT);
     }
 
     [Task]
     public void TestIsAlerted() {
-        if (isAlerted) {
-            Task.current.Succeed();
-        }
-        else {
-            Task.current.Fail();
-        }
+        Task.current.Complete(state == State.ALERTED);
     }
 
 }

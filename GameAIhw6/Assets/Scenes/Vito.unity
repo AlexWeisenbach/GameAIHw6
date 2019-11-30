@@ -841,6 +841,7 @@ MonoBehaviour:
   isPlayful: 1
   isNeedGoOut: 0
   isAlerted: 0
+  state: 0
 --- !u!114 &1014814819
 MonoBehaviour:
   m_ObjectHideFlags: 0
