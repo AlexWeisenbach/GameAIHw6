@@ -15,7 +15,12 @@ public class VitoGoOut : MonoBehaviour {
     [SerializeField]
     int aggressiveCut = 90;
 
+    private UIControl controller;
 
+    private void Start()
+    {
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
+    }
 
     [Task]
     public void LittleGoOut() {
@@ -29,13 +34,13 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito is scratching at the door.");
+                controller.Log("Vito is scratching at the door.");
                 break;
             case 1:
-                Debug.Log("Vito lets out a low whine at the door.");
+                controller.Log("Vito lets out a low whine at the door.");
                 break;
             default:
-                Debug.Log("Vito sits at the door and watches you.");
+                controller.Log("Vito sits at the door and watches you.");
                 break;
         }
 
@@ -54,13 +59,13 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito is scratching at the door quite a bit.");
+                controller.Log("Vito is scratching at the door quite a bit.");
                 break;
             case 1:
-                Debug.Log("Vito is whining more than usual at the door.");
+                controller.Log("Vito is whining more than usual at the door.");
                 break;
             default:
-                Debug.Log("Vito sits at the door and barks once to try and get your attention.");
+                controller.Log("Vito sits at the door and barks once to try and get your attention.");
                 break;
         }
 
@@ -79,13 +84,13 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito is starting to leave claw marks on the door.");
+                controller.Log("Vito is starting to leave claw marks on the door.");
                 break;
             case 1:
-                Debug.Log("Vito is whimpering at the door.");
+                controller.Log("Vito is whimpering at the door.");
                 break;
             default:
-                Debug.Log("Vito barks aggressively at the door for your attention.");
+                controller.Log("Vito barks aggressively at the door for your attention.");
                 break;
         }
 
@@ -100,13 +105,13 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito leaves a fun surprise for you somewhere in the house.");
+                controller.Log("Vito leaves a fun surprise for you somewhere in the house.");
                 break;
             case 1:
-                Debug.Log("A familiar odor wafts from the other room.");
+                controller.Log("A familiar odor wafts from the other room.");
                 break;
             default:
-                Debug.Log("Vito makes eye contact as he takes a fat dump on your brand new timbs.");
+                controller.Log("Vito makes eye contact as he takes a fat dump on your brand new timbs.");
                 break;
         }
 
@@ -121,19 +126,19 @@ public class VitoGoOut : MonoBehaviour {
 
             switch (rand) {
                 case 0:
-                    Debug.Log("Did this always take so long?");
+                    controller.Log("Did this always take so long?");
                     break;
                 case 1:
-                    Debug.Log("Nice weather we're having today...");
+                    controller.Log("Nice weather we're having today...");
                     break;
                 case 2:
-                    Debug.Log("Vito shows no sign of yielding.");
+                    controller.Log("Vito shows no sign of yielding.");
                     break;
                 case 3:
-                    Debug.Log("Vito waddles after a passing dog before reaching the end of his leash and going back to his business.");
+                    controller.Log("Vito waddles after a passing dog before reaching the end of his leash and going back to his business.");
                     break;
                 default:
-                    Debug.Log("Vito's eyes meet yours, it's awkward.");
+                    controller.Log("Vito's eyes meet yours, it's awkward.");
                     break;
             }
 
@@ -154,13 +159,13 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("You and Vito walk home.");
+                controller.Log("You and Vito walk home.");
                 break;
             case 1:
-                Debug.Log("Vito takes you on a jog back home.");
+                controller.Log("Vito takes you on a jog back home.");
                 break;
             default:
-                Debug.Log("Vito takes you on many squirell chasing adventures before you return home.");
+                controller.Log("Vito takes you on many squirell chasing adventures before you return home.");
                 break;
         }
 
@@ -178,14 +183,14 @@ public class VitoGoOut : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito walks over to the door.");
+                controller.Log("Vito walks over to the door.");
                 break;
             case 1:
-                Debug.Log("Vito gets up and goes to the door.");
+                controller.Log("Vito gets up and goes to the door.");
                 break;
             default:
                 // Real shit do people know what a mudroom is around here? Like is this too ambiguious? Idk change it if you think it should be.
-                Debug.Log("Vito walks into the mudroom.");
+                controller.Log("Vito walks into the mudroom.");
                 break;
         }
 

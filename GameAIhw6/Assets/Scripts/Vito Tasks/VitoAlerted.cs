@@ -10,6 +10,8 @@ public class VitoAlerted : MonoBehaviour {
     int TOTALTIME = Blackboard.SecondsPerDay;
     int alertStates = 4;
 
+    private UIControl controller;
+
     // TEMPORARY
     int time = 0;
 
@@ -17,11 +19,16 @@ public class VitoAlerted : MonoBehaviour {
         time = Clock.getTime();
     }
 
+    private void Start()
+    {
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
+    }
+
     [Task]
     public void Alert1() {
         if (time >= 0 && time <= (TOTALTIME / alertStates) * 1) {
             Task.current.Succeed();
-            Debug.Log("Vito is barking at something downstairs.");
+            controller.Log("Vito is barking at something downstairs.");
         } else {
             Task.current.Fail();
         }
@@ -31,7 +38,7 @@ public class VitoAlerted : MonoBehaviour {
     public void Alert2() {
         if (time > (TOTALTIME / alertStates) * 1 && time <= (TOTALTIME / alertStates) * 2) {
             Task.current.Succeed();
-            Debug.Log("Vito sprints to the door and starts barking aggressively.");
+            controller.Log("Vito sprints to the door and starts barking aggressively.");
         }
         else {
             Task.current.Fail();
@@ -42,7 +49,7 @@ public class VitoAlerted : MonoBehaviour {
     public void Alert3() {
         if (time > (TOTALTIME / alertStates) * 2 && time <= (TOTALTIME / alertStates) * 3) {
             Task.current.Succeed();
-            Debug.Log("Vito jumps up on the window and starts barking at something outside.");
+            controller.Log("Vito jumps up on the window and starts barking at something outside.");
         }
         else {
             Task.current.Fail();
@@ -53,7 +60,7 @@ public class VitoAlerted : MonoBehaviour {
     public void Alert4() {
         if (time > (TOTALTIME / alertStates) * 3 && time <= (TOTALTIME / alertStates) * 4) {
             Task.current.Succeed();
-            Debug.Log("You wake up to Vito freaking out downstairs.");
+            controller.Log("You wake up to Vito freaking out downstairs.");
         }
         else {
             Task.current.Fail();
@@ -63,7 +70,7 @@ public class VitoAlerted : MonoBehaviour {
     // Probably won't happen but also maybe saves us from having to fix a bug lol
     [Task]
     public void DefaultAlert() {
-        Debug.Log("Vito hears the sound of lazy programming and stares at you judgementally.");
+        controller.Log("Vito hears the sound of lazy programming and stares at you judgementally.");
         Task.current.Succeed();
     }
 

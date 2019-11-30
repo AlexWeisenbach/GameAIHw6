@@ -12,8 +12,12 @@ public class VitoPlay : MonoBehaviour {
 
     int currPatience = 0;
 
+    private UIControl controller;
+
+
     private void Start() {
         currPatience = patience;
+        controller = GameObject.Find("UIController").GetComponent<UIControl>();
     }
 
     private void Update() {
@@ -54,16 +58,16 @@ public class VitoPlay : MonoBehaviour {
         if (!Blackboard.thrown) {
             switch (rand) {
                 case 0:
-                    Debug.Log("Vito wags his tail expectantly.");
+                    controller.Log("Vito wags his tail expectantly.");
                     break;
                 case 1:
-                    Debug.Log("Vito looks up at you and waits for the throw.");
+                    controller.Log("Vito looks up at you and waits for the throw.");
                     break;
                 case 2:
-                    Debug.Log("Vito runs in circles as he waits for you to throw the stick.");
+                    controller.Log("Vito runs in circles as he waits for you to throw the stick.");
                     break;
                 default:
-                    Debug.Log("Vito sits patiently at your feet.");
+                    controller.Log("Vito sits patiently at your feet.");
                     break;
             }
             currPatience -= 1;
@@ -80,13 +84,13 @@ public class VitoPlay : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito and you head outside to play fetch.");
+                controller.Log("Vito and you head outside to play fetch.");
                 break;
             case 1:
-                Debug.Log("Vito can hardly contain his excitement as you two walk towards the door.");
+                controller.Log("Vito can hardly contain his excitement as you two walk towards the door.");
                 break;
             default:
-                Debug.Log("Vito is so excited he tries to open the door before you get there. (It doesn't work)");
+                controller.Log("Vito is so excited he tries to open the door before you get there. (It doesn't work)");
                 break;
         }
 
@@ -101,16 +105,16 @@ public class VitoPlay : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito races to where the stick fell.");
+                controller.Log("Vito races to where the stick fell.");
                 break;
             case 1:
-                Debug.Log("Vito struggles to carry the stick back before deciding to just drag it back by one end.");
+                controller.Log("Vito struggles to carry the stick back before deciding to just drag it back by one end.");
                 break;
             case 2:
-                Debug.Log("Vito misses the stick on the first pass, but eventually finds it.");
+                controller.Log("Vito misses the stick on the first pass, but eventually finds it.");
                 break;
             default:
-                Debug.Log("Vito sits patiently at your feet before realizing that you don't have the stick and races to get it.");
+                controller.Log("Vito sits patiently at your feet before realizing that you don't have the stick and races to get it.");
                 break;
         }
 
@@ -132,16 +136,16 @@ public class VitoPlay : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito races back to you and drops the stick at your feet.");
+                controller.Log("Vito races back to you and drops the stick at your feet.");
                 break;
             case 1:
-                Debug.Log("Vito drops the stick a few times before eventually dropping it of with you.");
+                controller.Log("Vito drops the stick a few times before eventually dropping it of with you.");
                 break;
             case 2:
-                Debug.Log("Vito almost trips running back to give you the stick, but eventually makes it.");
+                controller.Log("Vito almost trips running back to give you the stick, but eventually makes it.");
                 break;
             default:
-                Debug.Log("Vito sits patiently at your feet, until you realize he somehow got the stick to you without you noticing.");
+                controller.Log("Vito sits patiently at your feet, until you realize he somehow got the stick to you without you noticing.");
                 break;
         }
 
@@ -160,16 +164,16 @@ public class VitoPlay : MonoBehaviour {
 
         switch (rand) {
             case 0:
-                Debug.Log("Vito seems ready to go inside.");
+                controller.Log("Vito seems ready to go inside.");
                 break;
             case 1:
-                Debug.Log("Vito drops the stick and wanders to the door.");
+                controller.Log("Vito drops the stick and wanders to the door.");
                 break;
             case 2:
-                Debug.Log("Vito doesn't seem interested in fetch anymore.");
+                controller.Log("Vito doesn't seem interested in fetch anymore.");
                 break;
             default:
-                Debug.Log("Vito wanders to the door and paws at the bottom.");
+                controller.Log("Vito wanders to the door and paws at the bottom.");
                 break;
         }
 
