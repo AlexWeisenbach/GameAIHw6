@@ -20,6 +20,7 @@ public class VitoTired : MonoBehaviour {
     private void Start()
     {
         controller = GameObject.Find("UIController").GetComponent<UIControl>();
+        Blackboard.SCut = sleepyCut;
     }
 
     string spot = "bed";
@@ -132,7 +133,28 @@ public class VitoTired : MonoBehaviour {
 
     [Task]
     public void CanSleep() {
-        Task.current.Complete(Blackboard.GetTired() >= sleepCut);
+        Task.current.Complete(Blackboard.GetTired() >= sleepCut && (Blackboard.leftAlone || Blackboard.GetTired() >= 100));
+    }
+
+    [Task]
+    public void AlertWakeUp() {
+        int rand = (int)Mathf.Floor(Random.Range(0, 3));
+
+        switch (rand) {
+            case 0:
+                controller.Log("Vito wakes up and jumps up off the " + spot + ".");
+                break;
+            case 1:
+                controller.Log("Vito lifts his head off the " + spot + " and listens carefully.");
+                break;
+            case 2:
+                controller.Log("Vito jumps to his feet.");
+                break;
+            default:
+                controller.Log("Vito raises his head in curiousity.");
+                break;
+        }
+        Task.current.Succeed();
     }
 
 }

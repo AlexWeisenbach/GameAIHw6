@@ -6,9 +6,6 @@ using Panda;
 public class VitoGoOut : MonoBehaviour {
 
     [SerializeField]
-    bool isGoOut = false;
-
-    [SerializeField]
     int littleCut = 60;
     [SerializeField]
     int normalCut = 80;
@@ -16,10 +13,12 @@ public class VitoGoOut : MonoBehaviour {
     int aggressiveCut = 90;
 
     private UIControl controller;
+    private bool atDoor = false;
 
     private void Start()
     {
         controller = GameObject.Find("UIController").GetComponent<UIControl>();
+        Blackboard.GOCut = littleCut;
     }
 
     [Task]
@@ -119,41 +118,45 @@ public class VitoGoOut : MonoBehaviour {
 
     [Task]
     public void CheckNeedGoOut() {
-        bool temp = Blackboard.GetGoOut() > 25;
-        if (temp) {
+        Task.current.Complete(Blackboard.GetGoOut() >= 25);
+    }
 
-            int rand = Mathf.FloorToInt(Random.Range(0, 5));
+    [Task]
+    public void ActuallyGoOut() {
+        int rand = Mathf.FloorToInt(Random.Range(0, 5));
 
-            switch (rand) {
-                case 0:
-                    controller.Log("Did this always take so long?");
-                    break;
-                case 1:
-                    controller.Log("Nice weather we're having today...");
-                    break;
-                case 2:
-                    controller.Log("Vito shows no sign of yielding.");
-                    break;
-                case 3:
-                    controller.Log("Vito waddles after a passing dog before reaching the end of his leash and going back to his business.");
-                    break;
-                default:
-                    controller.Log("Vito's eyes meet yours, it's awkward.");
-                    break;
-            }
+        switch (rand) {
+            case 0:
+                controller.Log("Did this always take so long?");
+                break;
+            case 1:
+                controller.Log("Nice weather we're having today...");
+                break;
+            case 2:
+                controller.Log("Vito shows no sign of yielding.");
+                break;
+            case 3:
+                controller.Log("Vito waddles after a passing dog before reaching the end of his leash and going back to his business.");
+                break;
+            default:
+                controller.Log("Vito's eyes meet yours, it's awkward.");
+                break;
+        }
 
+        if (Blackboard.GetGoOut() > 25) {
             Blackboard.DeltaGoOut(-25);
         }
         else {
             Blackboard.SetGoOut(0);
         }
-        Task.current.Complete(temp);
+
+        Task.current.Succeed();
     }
 
     [Task]
     public void StopGoOut() {
 
-        isGoOut = false;
+        Blackboard.isGoOut = false;
 
         int rand = Mathf.FloorToInt(Random.Range(0, 2));
 
@@ -165,7 +168,7 @@ public class VitoGoOut : MonoBehaviour {
                 controller.Log("Vito takes you on a jog back home.");
                 break;
             default:
-                controller.Log("Vito takes you on many squirell chasing adventures before you return home.");
+                controller.Log("Vito takes you on many squirel chasing adventures before you finally return home.");
                 break;
         }
 
@@ -174,7 +177,7 @@ public class VitoGoOut : MonoBehaviour {
 
     [Task]
     public void IsGoingOut() {
-        Task.current.Complete(isGoOut);
+        Task.current.Complete(Blackboard.isGoOut);
     }
 
     [Task]
@@ -194,12 +197,13 @@ public class VitoGoOut : MonoBehaviour {
                 break;
         }
 
+        atDoor = true;
         Task.current.Succeed();
     }
 
     [Task]
-    public void NeedGoOut() {
-        Task.current.Complete(Blackboard.GetGoOut() >= 50);
+    public void CheckAtDoor() {
+        Task.current.Complete(atDoor);
     }
 
 }

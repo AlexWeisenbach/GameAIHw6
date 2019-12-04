@@ -17,9 +17,13 @@ public class VitoLonely : MonoBehaviour {
 
     private UIControl controller;
 
-    private void Start()
-    {
+    private void Start() {
         controller = GameObject.Find("UIController").GetComponent<UIControl>();
+        Blackboard.LLCut = littleCut;
+    }
+
+    private void Update() {
+
     }
 
     [Task]

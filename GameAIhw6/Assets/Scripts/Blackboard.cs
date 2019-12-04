@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour {
 
-    static float tired = 55;
+    static float tired = 0;
+    public static bool leftAlone = false;
     public static bool asleep = false;
     public static bool irritated = false;
+    public static int SCut = 25;
 
     static float hungry = 0;
     public static bool eating = false;
+    public static int HCut = 30;
 
     static float lonely = 0;
     public static bool thrown = false;
     public static bool playing = false;
-    public static bool wantsToPlay = false;
+    public static int LLCut = 25;
+    public static int PCut = 75;
 
     static float goOut = 0;
+    public static int GOCut = 60;
+    public static bool isGoOut = false;
 
-    static bool bowlFull = false;
+    public static int bowlFull = 0;
     public static bool fillFlag = false;
+
+    public static bool HeardNoise = false;
 
     public static int SecondsPerDay = 1440;
 
@@ -86,12 +94,12 @@ public class Blackboard : MonoBehaviour {
 
     public static void FillBowl()
     {
-        bowlFull = true;
+        bowlFull = 100;
     }
 
     public static void EmptyBowl()
     {
-        bowlFull = false;
+        bowlFull = 0;
     }
 
 

@@ -11,7 +11,7 @@ public class UIControl : MonoBehaviour
     public Text readout;
     public ScrollRect scroll;
     private string displayedText = "";
-    private bool readoutVisible = false;
+    private bool readoutVisible = true;
     //public Blackboard blackboard;
     // Start is called before the first frame update
     void Start()
@@ -37,14 +37,18 @@ public class UIControl : MonoBehaviour
         }
         else if (Input.GetKeyDown("k"))
         {
-            Blackboard.thrown = true;
-            Log("You throw a stick for Vito.");
-            
+            if (Blackboard.playing) {
+                Blackboard.thrown = true;
+                Log("You throw a stick for Vito.");
+            } else {
+                Log("You get ready to play fetch with Vito.");
+                Blackboard.playing = true;
+            }
         }
         else if (Input.GetKeyDown("p"))
         {
             Blackboard.DeltaLonely(-10);
-            if (Blackboard.GetLonely() > 0) {
+            if (Blackboard.GetLonely() < 10) {
                 Blackboard.SetLonely(0);
             }
             Log("You pet Vito.");
@@ -58,7 +62,7 @@ public class UIControl : MonoBehaviour
         else if (Input.GetKeyDown("w"))
         {
             Log("You and Vito go for a walk");
-            
+            Blackboard.isGoOut = true;
         }
         else if (Input.GetKeyDown("l"))
         {
@@ -72,7 +76,7 @@ public class UIControl : MonoBehaviour
         }
         else if (Input.GetKeyDown("a"))
         {
-            Log("You get home from work");
+            Log("You get home from work, the grind took a break.");
             
         }
         else if (Input.GetKeyDown("i"))
@@ -93,11 +97,12 @@ public class UIControl : MonoBehaviour
         {
             Log("A new day begins.");
             timeChange = true;
-            
+            Clock.addDay();
         }
         else if (Input.GetKeyDown("s"))
         {
             Log("Vito hears a mysterious noise!");
+            Blackboard.HeardNoise = true;
             
         }
         else if(Input.GetKeyDown("1"))

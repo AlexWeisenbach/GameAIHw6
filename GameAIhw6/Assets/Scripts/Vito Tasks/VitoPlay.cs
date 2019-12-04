@@ -6,7 +6,7 @@ using Panda;
 public class VitoPlay : MonoBehaviour {
 
     [SerializeField]
-    int playCut = 75;
+    int playCut = 25;
     [SerializeField]
     int patience = 3;
 
@@ -18,12 +18,11 @@ public class VitoPlay : MonoBehaviour {
     private void Start() {
         currPatience = patience;
         controller = GameObject.Find("UIController").GetComponent<UIControl>();
+        Blackboard.PCut = playCut;
     }
 
     private void Update() {
-        if (Blackboard.GetLonely() >= playCut) {
-            Blackboard.wantsToPlay = true;
-        }
+
     }
 
     [Task]

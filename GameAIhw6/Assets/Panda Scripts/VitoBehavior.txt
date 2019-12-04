@@ -3,35 +3,73 @@ tree("Root")
 
 tree("Idle")
 	sequence
-		Wait 3.0
+		Wait 5.0
 		fallback
 			while
-				TestIsTired()
+				TestIsAlerted()
+				tree("Alerted")
+			while 
+				sequence
+					TestIsHungry()
+					not
+						CheckBusy()
+				tree("Hungry")
+			while
+				sequence
+					TestIsNeedGoOut()
+					not
+						IsSleeping()
+				tree("GoOut")
+			while 
+				sequence
+					TestIsLonely()
+					not
+						CheckBusy()
+				tree("Lonely")
+			while
+				sequence
+					TestIsTired()
+					not
+						CheckBusy()
 				tree("Tired")
 			while 
-				TestIsHungry()
-				tree("Hungry")
-			while 
-				TestIsLonely()
-				tree("Lonely")
-			while 
-				TestIsPlayful()
+				sequence
+					TestIsPlayful()
+					not
+						PlayCheck()
+					Playing()
 				fallback
-					tree("Playful")
 					while
 						not
 							HasPatience()
 						StopFetch()
-			while 
-				TestIsNeedGoOut()
-				tree("GoOut")
+					tree("Playful")
 			while
-				TestIsAlerted()
-				tree("Alerted")
-	
+				not
+					tree("Tests")
+				LoafAround()
+						
+tree("Tests")
+	fallback
+		TestIsAlerted()
+		TestIsHungry()
+		TestIsNeedGoOut()
+		TestIsLonely()
+		TestIsTired()
+		TestIsPlayful()
 
 tree("Tired")
 	sequence
+		mute
+			while
+				TestIsAlerted()
+				sequence
+					mute
+						while
+							IsSleeping()
+							AlertWakeUp()
+					Wait 5.0
+					tree("Alerted")
 		fallback
 			IsSleeping()
 			fallback
@@ -44,7 +82,7 @@ tree("Tired")
 					IsSleeping()
 				CanSleep()
 			sequence
-				Wait 3.0
+				Wait 5.0
 				tree("GoToSleep")
 
 tree("GoToSleep")
@@ -52,7 +90,7 @@ tree("GoToSleep")
 		fallback
 			FindBed()
 			FindSpot()
-		Wait 3.0
+		Wait 5.0
 		FallAsleep()
 		Succeed
 
@@ -65,25 +103,25 @@ tree("Hungry")
 				fallback
 					sequence
 						CheckForFood()
-						Wait 3.0
+						Wait 5.0
 						EatFood()
-						Wait 3.0
+						Wait 5.0
 						while
 							CheckStillHungry()
 							sequence
 								BegForFood()
-								Wait 3.0
+								Wait 5.0
 					while
 						CheckStillHungry()
 						sequence
 							BegForFood()
-							Wait 3.0
+							Wait 5.0
 					while
 						not
 							CheckForFood()
 						sequence
 							BegForFood()
-							Wait 3.0
+							Wait 5.0
 		Succeed
 
 tree("Lonely")
@@ -106,13 +144,13 @@ tree("Playful")
 			Playing()
 			sequence
 				GetReadyToPlay()
-				Wait 3.0
+				Wait 5.0
 				fallback
 					tree("PlayFetch")
 					WaitForThrow()
 
 		sequence
-			Wait 3.0
+			Wait 5.0
 			while
 				HasPatience()
 				while
@@ -127,31 +165,35 @@ tree("PlayFetch")
 		CheckIfThrown()
 		sequence
 			GetStick()
-			Wait 3.0
+			Wait 5.0
 			BringStickBack()
-			Wait 3.0
-
+			Wait 5.0
 
 tree("GoOut")
-	fallback
-		sequence
-			NeedGoOut()
-			GoToDoor()
+	sequence
+		CheckNeedGoOut()
+		Wait 5.0
+		mute
 			fallback
 				while
 					not
-						IsGoingOut()
-					fallback
-						LittleGoOut()
-						GoOut()
-						AggressivelyGoOut()
-						sequence
-							GoOnFloor()
-							Succeed
-				CheckNeedGoOut()
-				StopGoOut()
-				Succeed
-		Succeed
+						CheckAtDoor()
+					GoToDoor()
+		fallback
+			while
+				not
+					IsGoingOut()
+				fallback
+					LittleGoOut()
+					GoOut()
+					AggressivelyGoOut()
+					GoOnFloor()
+			sequence
+				ActuallyGoOut()
+				while
+					not
+						CheckNeedGoOut()
+					StopGoOut()
 
 tree("Alerted")
 	sequence
@@ -160,16 +202,19 @@ tree("Alerted")
 				IsSleeping()
 				sequence
 					WakeUp()
-					Wait 3.0
+					Wait 5.0
 		mute
 			while
 				IsEating()
 				sequence
 					StopEating()
-					Wait 3.0
+					Wait 5.0
 		fallback
 			Alert1()
 			Alert2()
 			Alert3()
 			Alert4()
 			DefaultAlert()
+		sequence
+			Wait 5.0
+			StopAlert()

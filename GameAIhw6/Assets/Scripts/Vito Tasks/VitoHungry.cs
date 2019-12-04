@@ -4,18 +4,18 @@ using UnityEngine;
 using Panda;
 
 public class VitoHungry : MonoBehaviour {
-    [SerializeField]
-    public int bowlFullness = 0;
+
     [SerializeField]
     int hungryCut = 30;
 
     private UIControl controller;
 
     private void Update() {
+
         if (Blackboard.fillFlag) {
             Blackboard.fillFlag = false;
-            bowlFullness = 100;
-        } else if (bowlFullness == 0) {
+            Blackboard.bowlFull = 100;
+        } else if (Blackboard.bowlFull == 0) {
             Blackboard.EmptyBowl();
         }
     }
@@ -23,6 +23,7 @@ public class VitoHungry : MonoBehaviour {
     private void Start()
     {
         controller = GameObject.Find("UIController").GetComponent<UIControl>();
+        Blackboard.HCut = hungryCut;
     }
 
     [Task]
@@ -33,7 +34,7 @@ public class VitoHungry : MonoBehaviour {
 
     [Task]
     public void CheckForFood() {
-        Task.current.Complete(bowlFullness > 0);
+        Task.current.Complete(Blackboard.bowlFull > 0);
     }
 
     [Task]
@@ -41,12 +42,13 @@ public class VitoHungry : MonoBehaviour {
 
         controller.Log("Vito is eating his food.");
 
-        if (Blackboard.GetHungry() > bowlFullness) {
-            Blackboard.DeltaHungry(-bowlFullness);
-            bowlFullness = 0;
+        if (Blackboard.GetHungry() > Blackboard.bowlFull) {
+            Blackboard.DeltaHungry(-Blackboard.bowlFull);
+            Blackboard.bowlFull = 0;
         } else {
-            bowlFullness -= (int)Blackboard.GetHungry();
+            Blackboard.bowlFull -= (int)Blackboard.GetHungry();
             Blackboard.SetHungry(0);
+            GetComponent<VitoIdle>().isHungry = false;
         }
 
         Task.current.Succeed();

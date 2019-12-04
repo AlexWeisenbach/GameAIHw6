@@ -74,4 +74,11 @@ public class VitoAlerted : MonoBehaviour {
         Task.current.Succeed();
     }
 
+    [Task]
+    public void StopAlert() {
+        controller.Log("Whatever made the noise is either dead, gone, or never existed. You think hard about which you would prefer...");
+        Blackboard.HeardNoise = false;
+        Task.current.Succeed();
+    }
+
 }
